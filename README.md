@@ -1,40 +1,39 @@
-# HRMS Onboarding, Performance & AI-Features Analytics Dashboard
+# Sales Data Analysis using Python
 
-Analysis of HRMS data across onboarding, performance, training, and employee exits — with tracked KPIs and workforce trend insights designed to power a Power BI dashboard for HR stakeholders.
+Exploratory Data Analysis (EDA) on a multi-category retail sales dataset to identify revenue drivers, seasonal trends, and customer purchase patterns — built to support inventory planning and sales strategy decisions.
 
 ## Tools & Libraries
-SQL (DuckDB) · Python · Pandas · Matplotlib · Seaborn · Power BI (DAX)
+Python · Pandas · NumPy · Matplotlib · Seaborn · Jupyter Notebook
 
 ## Dataset
-`data/hrms_data.csv` — 800 employee records covering department, location, hire source, onboarding timeline, performance ratings, training completion, exit status/reason, and AI smart-feature usage logs (chatbot queries, recommendation clicks, mood index).
+`data/sales_data.csv` — 5,000+ order-level records across 7 product categories, 5 regions, and 5 payment modes, spanning January–December 2024. Includes intentional data quality issues (missing values, duplicates) to demonstrate the cleaning workflow.
 
 ## What This Project Covers
-- **Onboarding:** on-time completion rate by department
-- **Performance:** average rating trends by department and location
-- **Attrition:** exit rate by department and top exit reasons
-- **Training:** module completion rate by department
-- **Onboarding → Performance link:** does faster onboarding correlate with better early performance?
-- **AI smart-features:** relationship between chatbot/recommendation engagement and employee mood index
-
-SQL logic for every KPI is in [`sql_queries.sql`](sql_queries.sql); the same queries were also used to build the KPI measures for the accompanying Power BI dashboard.
+- Data cleaning: handling missing values, removing duplicates, feature engineering (month, weekday)
+- Revenue analysis by category and region
+- Monthly sales trend and seasonality detection
+- Discount-level impact on order volume
+- Payment mode distribution
+- Correlation analysis between price, quantity, discount, and rating
+- Customer rating analysis by category
 
 ## Key Findings
-1. Onboarding on-time completion rate varies meaningfully across departments — some show clear process bottlenecks.
-2. Performance ratings are fairly consistent org-wide (~3.4–3.9 average), no major outlier department.
-3. Attrition is concentrated in specific departments, driven mainly by "Better Opportunity" and "Compensation" as exit reasons.
-4. Employees with on-time onboarding show slightly higher early performance ratings.
-5. Higher engagement with AI chatbot/recommendation features is associated with a modestly higher employee mood index.
+1. Electronics is the top revenue-generating category despite a lower order count than Clothing, due to higher average order value.
+2. Sales spike sharply in October–December (festive season), signaling when to scale inventory and staffing.
+3. UPI and Credit Card are the dominant payment modes.
+4. Discounts in the 5–10% range drive the best order volume without excessive margin erosion — returns diminish past 15–20%.
+5. Customer ratings are stable (4.0–4.3 average) across all categories, indicating no major catalog quality issues.
 
 ## How to Run
 ```bash
-pip install pandas numpy duckdb matplotlib seaborn jupyter
-python generate_data.py         # generates data/hrms_data.csv
-jupyter notebook HRMS_Analysis.ipynb
+pip install pandas numpy matplotlib seaborn jupyter
+python generate_data.py        # generates data/sales_data.csv
+jupyter notebook Sales_Data_Analysis.ipynb
 ```
 
 ## Sample Output
-![Attrition by Department](images/attrition_by_department.png)
-![Performance by Department](images/performance_by_department.png)
+![Revenue by Category](images/revenue_by_category.png)
+![Monthly Sales Trend](images/monthly_trend.png)
 
 ---
-*Part of my Data Analyst portfolio. Dataset is synthetically generated to reflect realistic organizational HR patterns.*
+*Part of my Data Analyst portfolio. Dataset is synthetically generated to reflect realistic Indian e-commerce sales patterns.*
